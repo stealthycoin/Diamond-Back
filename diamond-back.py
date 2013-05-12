@@ -51,13 +51,15 @@ class Settings:
             if debug:
                 print("Processing '%s'" % line[:-1])
             #check if it is a symbol definition
-            m = re.search('^[Ss]ymbol: ?([\w\+\?!@#\$%\^&\*\(\)]) (\.\d+)(?:$| (.*))', line)
+            m = re.search('^[Ss]ymbol: ?([\w\+\?!@#\$%\^&\*\(\)]) (\.\d+)(?:$| (.*)$)', line)
             if m:
                 if debug:
                     print("Adding %s to alphabet with probability of %s" % (m.group(1), m.group(2)))
                 try:
                     HTML = re.sub("\"","\\\"",m.group(3))
                 except IndexError:
+                    HTML = None
+                except TypeError:
                     HTML = None
                 self.alph.addSymbol(m.group(1), m.group(2), HTML)
             #check if it is the number of lines
@@ -85,10 +87,10 @@ def buildJS(alph, seq, n):
 
     m = "    map = {};"
     for s in alph.symbolSet:
-        try:
-            transform = s[2]
-        except IndexError:
+        if s[2] == None:
             transform = s[0]
+        else:
+            transform = s[2]
         m += "\n    map['" + s[0] + "'] = \""+transform+"\";"
 
     mappings = mappings % m
