@@ -22,3 +22,6 @@ Alphabet file formatting
 
 
 ```Symbol: A .43 <code>``` Defines a new symbol named A that has a 43% chance of being chosen. ```<code>``` is optional and defines what it looks like in the browser, leaving it blank just uses its name.
+
+
+```delay: ###``` Sets how long is spent on each frame in milliseconds.
