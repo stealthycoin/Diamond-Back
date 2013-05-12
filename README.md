@@ -20,4 +20,5 @@ Alphabet file formatting
 
 ```n: ##``` Configures the n in n-back to be whatever ## is.
 
+
 ```Symbol: A .43 <code>``` Defines a new symbol named A that has a 43% chance of being chosen. ```<code>``` is optional and defines what it looks like in the browser, leaving it blank just uses its name.
