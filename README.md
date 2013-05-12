@@ -1,4 +1,4 @@
-diamond-back
+Diamond-Back
 ============
 
 n-back implementation in python and javascript.
