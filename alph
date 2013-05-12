@@ -1,4 +1,5 @@
-Symbol: A .2 <img src="./resources/godzilla.jpg" />
-Symbol: B .4 <img src="./resources/george.jpg">
+Symbol: A .1 <img src="./resources/godzilla.jpg" />
+Symbol: B .1 <img src="./resources/george.jpg">
 n: 2
-Symbol: C .4 <img src="./resources/al.jpg">
+Symbol: C .1 <img src="./resources/al.jpg">
+Symbol: D .7 <object height="100" width="100" data="./resources/horse.wav"></object>
