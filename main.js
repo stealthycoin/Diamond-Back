@@ -6,6 +6,7 @@ var right = 0;
 var wrong = 0;
 var total = 0;
 var clicked = false;
+var delay = 0;
 
 //change frames or display end score
 function tick() {
@@ -20,7 +21,7 @@ function tick() {
 	    total++;
 	}
 	clicked = false;
-	setTimeout(function(){transition();}, 1500);
+	setTimeout(function(){transition();}, delay);
 
     }
 }
@@ -36,6 +37,7 @@ function load() {
     content = document.getElementById("content");
     sequence = getSeq();
     n = getN();
+    delay = getDelay();
     document.getElementById("n").innerHTML = "N = " + n;
 
     tick();

@@ -47,6 +47,7 @@ class Settings:
         f = open(filepath, 'r')
         self.alph = Alphabet()
         self.n = 1
+        self.delay = 1700
         for line in f:
             if debug:
                 print("Processing '%s'" % line[:-1])
@@ -68,15 +69,21 @@ class Settings:
                 if debug:
                     print("N = " + m.group(1))
                 self.n = int(m.group(1))
-                
+            #check if it is the delay spec
+            m = re.search("[Dd]elay: ?(\d+)", line)
+            if m:
+                if debug:
+                    print("Delay = " + m.group(1))
+                self.delay = int(m.group(1))
         if not self.alph.pack():
             print("Probabilities must sum to 1")
             sys.exit()
 
 
-def buildJS(alph, seq, n):
+def buildJS(settings, seq):
     print(seq)
-    numback = "function getN() { return %d; }" % n
+    delay = "function getDelay() { return %d; }" % settings.delay
+    numback = "function getN() { return %d; }" % settings.n
     getseq = "function getSeq() { return \"%s\"; }" % seq
 
     mappings = """function mapping(key) {
@@ -86,7 +93,7 @@ def buildJS(alph, seq, n):
     
 
     m = "    map = {};"
-    for s in alph.symbolSet:
+    for s in settings.alph.symbolSet:
         if s[2] == None:
             transform = s[0]
         else:
@@ -95,7 +102,7 @@ def buildJS(alph, seq, n):
 
     mappings = mappings % m
     f = open("map.js", 'w')
-    f.write("%s\n%s\n\n%s" %(numback, getseq,  mappings))
+    f.write("%s\n%s\n%s\n\n%s" %(delay, numback, getseq,  mappings))
     f.close()
 
 def main():
@@ -116,7 +123,7 @@ def main():
                 out += settings.alph.makeUniformSequence(int(a[1:]))
             else:
                 out += settings.alph.makeSequence(int(a))
-        buildJS(settings.alph, out, settings.n)
+        buildJS(settings, out)
 
 if __name__ == "__main__":
     main()
