@@ -1,5 +1,6 @@
-Symbol: A .1 <img src="./resources/godzilla.jpg" />
-Symbol: B .1 <img src="./resources/george.jpg">
+Symbol: A .25 <img src="./resources/godzilla.jpg" />
+Symbol: B .25 <img src="./resources/george.jpg">
 n: 2
-Symbol: C .1 <img src="./resources/al.jpg">
-Symbol: D .7 <object height="100" width="100" data="./resources/horse.wav"></object>
+Symbol: C .25 <img src="./resources/al.jpg">
+symbol: D .25 <object height="0" width="0" data="./resources/horse.wav"></object>
+delay: 2000
